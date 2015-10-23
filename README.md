@@ -50,6 +50,45 @@ hero.addComponent(new Position(0, 0));
 hero.addComponent(new Velocity(0, 0));
 hero.addComponent(new Health(100));
 ```
+Here is the same example in ES6
+Note: The constructor is in place of the init function
+
+```js
+class Position extends CES.Component{
+    constructor(x, y){
+        super();
+        this.name = "position";
+        this.x = x;
+        this.y = y;
+    }
+}
+
+class Velocity extends CES.Component{
+    constructor(x, y){
+        super();
+        this.name = "velocity";
+        this.x = x;
+        this.y = y;
+    }
+}
+
+class Health extends CES.Component{
+    constructor(maxHealth){
+        super();
+        this.name = "health";
+        this.health = this.maxHealth = maxHealth;
+    }
+    
+    isDead(){
+        return this.health <= 0;
+    }
+    
+    receiveDamage(damage){
+        this.health -= damage;
+    }
+}
+```
+
 
 The system is responsible for updating the entities.
 In a real game there may be a lot of systems, like `CollisionSystem`,
